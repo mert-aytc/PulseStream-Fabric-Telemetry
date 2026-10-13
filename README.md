@@ -108,7 +108,7 @@ The numbers are synthetic, but they behave like a real climb: power-to-weight an
 
 ## Lifecycle management
 
-The Fabric workspace is connected to this repository through Git integration (branch `main`, folder `fabric`), so notebooks, lakehouse definitions, the semantic model and the report are versioned as code. A deployment pipeline promotes the items from Development to Test. The Test stage contains item definitions only: lakehouse items are deployed as definitions, so the data is produced by running the notebooks. After a deployment only the semantic model is still marked as different from the source; the differences I inspected were metadata in the calculation group (partition name and item order).
+While I developed the project, the Fabric workspace was connected to a GitHub repository through Git integration (branch `main`, folder `fabric`), so notebooks, lakehouse definitions, the semantic model and the report were versioned as code. The `fabric/` folder in this repository is the synced result; I squashed the commit history into a single commit before publishing. A deployment pipeline promotes the items from Development to Test. The Test stage contains item definitions only: lakehouse items are deployed as definitions, so the data is produced by running the notebooks. After a deployment only the semantic model is still marked as different from the source; the differences I inspected were metadata in the calculation group (partition name and item order).
 
 ![Git status](screenshots/09-git-synced.png)
 ![Deployment pipeline](screenshots/08-pipeline.png)
