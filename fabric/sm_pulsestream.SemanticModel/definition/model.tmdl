@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - lh_pulsestream_gold"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit","DaxQueryView_Desktop","CalcGroup","TMDLView_Desktop"]
+
+ref table dim_date
+ref table dim_rider
+ref table dim_turn
+ref table dq_summary
+ref table fact_ride
+ref table fact_telemetry
+ref table fact_turn_split
+ref table dim_route_profile
+ref table dim_route_trail
+ref table Comparison
+ref table 'Section Metric'
+
+ref role 'Team - Aurora Velo'
+ref role 'Team - Bluepeak Pro'
+ref role 'Team - Nordkamm Racing'
+ref role 'Team - Pico Rojo'
+ref role 'Team - Solaris Cycling'
+

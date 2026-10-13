@@ -1,0 +1,50 @@
+table 'Section Metric'
+	lineageTag: 2604b8b9-8dd8-424c-953b-241c15c360fd
+
+	column 'Section Metric'
+		lineageTag: 89a4597c-16e7-4ea5-bbb8-d86b39f126f7
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Section Metric Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Section Metric Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Section Metric Fields'
+		isHidden
+		lineageTag: 14a2b8f9-16b0-477a-a341-593fc68d4374
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Section Metric Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Section Metric Order'
+		isHidden
+		formatString: 0
+		lineageTag: b3823836-037b-4345-ade6-dfb858ae61c5
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Section Metric' = calculated
+		mode: import
+		source =
+				{
+				    ("Segment Pace (s/km)", NAMEOF('fact_ride'[Segment Pace (s/km)]), 0),
+				    ("Segment Avg Speed (km/h)", NAMEOF('fact_ride'[Segment Avg Speed (km/h)]), 1),
+				    ("Segment Avg HR (bpm)", NAMEOF('fact_ride'[Segment Avg HR (bpm)]), 2),
+				    ("Avg Segment Time (s)", NAMEOF('fact_ride'[Avg Segment Time (s)]), 3)
+				}
+
+	annotation PBI_Id = 8de3739ee90b488c9de1b45c0c20ff07
+

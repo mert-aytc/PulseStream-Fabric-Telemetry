@@ -1,0 +1,24 @@
+relationship 3fa2f842-bb6e-3a2d-a39b-7d51471ef781
+	fromColumn: fact_telemetry.ride_id
+	toColumn: fact_ride.ride_id
+
+relationship 906e2ca0-0a86-f2da-dcd5-74d648c284e8
+	fromColumn: fact_turn_split.ride_id
+	toColumn: fact_ride.ride_id
+
+relationship 4eb4b18a-7949-d704-0465-ea2fe7734e2e
+	fromColumn: fact_ride.date_key
+	toColumn: dim_date.date_key
+
+relationship 5405651b-7eeb-ed5b-d39e-f01cbe485b30
+	fromColumn: fact_telemetry.turn_id
+	toColumn: dim_turn.turn_id
+
+relationship 059cb961-ac29-0ad3-3e55-e99826e56265
+	fromColumn: fact_turn_split.turn_id
+	toColumn: dim_turn.turn_id
+
+relationship 9dfd73d4-a7a7-1783-f0e6-ec04acbad388
+	fromColumn: fact_ride.rider_id
+	toColumn: dim_rider.rider_id
+

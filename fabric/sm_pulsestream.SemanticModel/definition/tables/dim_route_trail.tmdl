@@ -1,0 +1,97 @@
+table dim_route_trail
+	lineageTag: 2c04114f-eee7-407a-808d-2d3a72e84c5b
+	sourceLineageTag: [dbo].[dim_route_trail]
+
+	measure 'Route Length (km)' = MAX(dim_route_trail[km])
+		displayFolder: Route
+		lineageTag: efb5b736-99a6-49ec-93ce-0bb7fbd82ea3
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Gradient %' = DIVIDE([Climb Gain (m)], [Route Length (km)] * 1000)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Route
+		lineageTag: b9ce45b8-05ac-4eb2-b82e-bd24802c3eb0
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	column km
+		dataType: double
+		lineageTag: 71dcf1cb-9c06-414f-94cb-d13c267fe9f3
+		sourceLineageTag: km
+		summarizeBy: none
+		sourceColumn: km
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column altitude_m
+		dataType: double
+		lineageTag: 75b20e06-e69e-4352-911c-cef633dfbf8b
+		sourceLineageTag: altitude_m
+		summarizeBy: none
+		sourceColumn: altitude_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grade_pct
+		dataType: double
+		lineageTag: 38e54dd2-a506-47c8-888a-2d80e3ce8a63
+		sourceLineageTag: grade_pct
+		summarizeBy: none
+		sourceColumn: grade_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column x_pos
+		dataType: double
+		lineageTag: db2dcf86-8da1-427e-8903-436665960fe1
+		sourceLineageTag: x_pos
+		summarizeBy: none
+		sourceColumn: x_pos
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column y_pos
+		dataType: double
+		lineageTag: 87f660db-a17f-4a2d-83e1-2c80ecf7fe29
+		sourceLineageTag: y_pos
+		summarizeBy: none
+		sourceColumn: y_pos
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_route_trail = entity
+		mode: directLake
+		source
+			entityName: dim_route_trail
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

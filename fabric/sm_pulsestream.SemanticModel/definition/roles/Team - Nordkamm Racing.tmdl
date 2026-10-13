@@ -1,0 +1,7 @@
+role 'Team - Nordkamm Racing'
+	modelPermission: read
+
+	tablePermission dim_rider = [team_name] == "Nordkamm Racing"
+
+	annotation PBI_Id = a597e81bd71f434e8e80ec401a8e5153
+

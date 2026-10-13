@@ -1,0 +1,7 @@
+role 'Team - Bluepeak Pro'
+	modelPermission: read
+
+	tablePermission dim_rider = [team_name] == "Bluepeak Pro"
+
+	annotation PBI_Id = 554cb5a095af4d4389706776eeed1368
+

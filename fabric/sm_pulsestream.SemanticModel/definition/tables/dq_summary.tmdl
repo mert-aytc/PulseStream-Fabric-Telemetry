@@ -1,0 +1,67 @@
+table dq_summary
+	lineageTag: bb9e3879-0807-4ca1-854e-1a5475dad5c5
+	sourceLineageTag: [dbo].[dq_summary]
+
+	column rule
+		dataType: string
+		lineageTag: f98402d8-254e-42ce-bb8e-853b1786559a
+		sourceLineageTag: rule
+		summarizeBy: none
+		sourceColumn: rule
+
+		annotation SummarizationSetBy = Automatic
+
+	column failed_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dda61c9-a7cf-4830-9b4c-db62fb1eed95
+		sourceLineageTag: failed_rows
+		summarizeBy: none
+		sourceColumn: failed_rows
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column total_rows
+		dataType: int64
+		formatString: 0
+		lineageTag: eb4dbf0a-faf9-47dd-bf4e-75ac5073f891
+		sourceLineageTag: total_rows
+		summarizeBy: none
+		sourceColumn: total_rows
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column failed_pct
+		dataType: double
+		lineageTag: 57863887-26e5-4254-9bb2-689d05cce2df
+		sourceLineageTag: failed_pct
+		summarizeBy: none
+		sourceColumn: failed_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column checked_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f89f89bd-25af-4290-b555-35fee91a1bda
+		sourceLineageTag: checked_at
+		summarizeBy: none
+		sourceColumn: checked_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dq_summary = entity
+		mode: directLake
+		source
+			entityName: dq_summary
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

@@ -1,0 +1,125 @@
+table dim_turn
+	lineageTag: 5f990b26-e0ea-4de5-b46b-817ff4ab95d3
+	sourceLineageTag: [dbo].[dim_turn]
+
+	column turn_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5c02a5e-d757-4669-b193-16b20ccb467b
+		sourceLineageTag: turn_id
+		summarizeBy: none
+		sourceColumn: turn_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column turn_name
+		dataType: string
+		lineageTag: 5ada9c6c-c2f1-45bf-878a-88121a035a2f
+		sourceLineageTag: turn_name
+		summarizeBy: none
+		sourceColumn: turn_name
+		sortByColumn: turn_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column km_from_start
+		dataType: double
+		lineageTag: a0bae717-b63e-4cad-ba4f-519231820411
+		sourceLineageTag: km_from_start
+		summarizeBy: none
+		sourceColumn: km_from_start
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column altitude_m
+		dataType: double
+		formatString: #,0
+		lineageTag: 6a8b19bd-9a60-474b-9bb7-8efe977301e6
+		sourceLineageTag: altitude_m
+		summarizeBy: none
+		sourceColumn: altitude_m
+
+		changedProperty = SummarizeBy
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column local_grade_pct
+		dataType: double
+		lineageTag: f9e5ed13-93ee-4863-83e1-101856f71299
+		sourceLineageTag: local_grade_pct
+		summarizeBy: none
+		sourceColumn: local_grade_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column turn_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 4474dc4a-45e2-4d7c-9b96-8d761ecc61a1
+		sourceLineageTag: turn_order
+		summarizeBy: none
+		sourceColumn: turn_order
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column section_km
+		dataType: double
+		lineageTag: 3176f86c-d813-47f5-8a64-b607b49ab733
+		sourceLineageTag: section_km
+		summarizeBy: none
+		sourceColumn: section_km
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column x_pos
+		dataType: double
+		lineageTag: 96c86a62-28d3-4793-87dd-98721e99ebb4
+		sourceLineageTag: x_pos
+		summarizeBy: sum
+		sourceColumn: x_pos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column y_pos
+		dataType: double
+		lineageTag: 6668436f-d4aa-46f0-a8bc-fc76c328e2b7
+		sourceLineageTag: y_pos
+		summarizeBy: sum
+		sourceColumn: y_pos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_turn = entity
+		mode: directLake
+		source
+			entityName: dim_turn
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

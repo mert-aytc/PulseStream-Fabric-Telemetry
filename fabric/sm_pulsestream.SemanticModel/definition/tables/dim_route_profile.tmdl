@@ -1,0 +1,50 @@
+table dim_route_profile
+	lineageTag: d2c6a853-559e-4884-a61f-b30c1d62f97b
+	sourceLineageTag: [dbo].[dim_route_profile]
+
+	column km
+		dataType: double
+		lineageTag: 02487c1b-a108-4e79-b94e-c764bb4749fa
+		sourceLineageTag: km
+		summarizeBy: none
+		sourceColumn: km
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column altitude_m
+		dataType: double
+		lineageTag: 5bf7f211-d5f7-4744-ad0f-9ef25b125471
+		sourceLineageTag: altitude_m
+		summarizeBy: none
+		sourceColumn: altitude_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grade_pct
+		dataType: double
+		lineageTag: f111a19f-4ed3-410d-8b51-bfec3685bf44
+		sourceLineageTag: grade_pct
+		summarizeBy: none
+		sourceColumn: grade_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_route_profile = entity
+		mode: directLake
+		source
+			entityName: dim_route_profile
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "sm_pulsestream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "78d4686c-64ee-bff9-45c0-e470a5f7c3ae"
+  }
+}

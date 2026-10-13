@@ -1,0 +1,7 @@
+role 'Team - Solaris Cycling'
+	modelPermission: read
+
+	tablePermission dim_rider = [team_name] == "Solaris Cycling"
+
+	annotation PBI_Id = c3c084baccd341668feff399470cbff1
+

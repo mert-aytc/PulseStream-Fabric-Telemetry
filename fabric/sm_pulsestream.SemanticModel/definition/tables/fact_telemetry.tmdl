@@ -1,0 +1,193 @@
+table fact_telemetry
+	lineageTag: da8f3fb4-022b-4160-802a-79b8d4bb5b1f
+	sourceLineageTag: [dbo].[fact_telemetry]
+
+	column ride_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6ad84ad9-cdf2-4ac5-9c46-c66b3bd39dc4
+		sourceLineageTag: ride_id
+		summarizeBy: none
+		sourceColumn: ride_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column rider_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4d1e9528-dc2c-4ad5-af99-aae5179adcb0
+		sourceLineageTag: rider_id
+		summarizeBy: none
+		sourceColumn: rider_id
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1dd5ccca-c53c-4b80-b5fb-69a148a4f4e1
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column turn_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f765b2de-3744-44ca-b253-b549ece085c0
+		sourceLineageTag: turn_id
+		summarizeBy: none
+		sourceColumn: turn_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column elapsed_s
+		dataType: int64
+		formatString: 0
+		lineageTag: 68b877cc-42b8-401c-a762-45c95a198847
+		sourceLineageTag: elapsed_s
+		summarizeBy: none
+		sourceColumn: elapsed_s
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column event_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 156a39f4-f02c-4745-ab1e-7bf9f4b3a4fd
+		sourceLineageTag: event_ts
+		summarizeBy: none
+		sourceColumn: event_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column dist_m
+		dataType: double
+		lineageTag: 67bdc155-f998-47df-9fda-c78d728242f5
+		sourceLineageTag: dist_m
+		summarizeBy: none
+		sourceColumn: dist_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column altitude_m
+		dataType: double
+		lineageTag: fe2572a5-5f6f-4e31-a1c0-8a50833de2a8
+		sourceLineageTag: altitude_m
+		summarizeBy: none
+		sourceColumn: altitude_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grade_pct
+		dataType: double
+		lineageTag: 7d102682-1eae-4226-990c-eca291ef0b8f
+		sourceLineageTag: grade_pct
+		summarizeBy: none
+		sourceColumn: grade_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column speed_kmh
+		dataType: double
+		lineageTag: 08ff8611-285b-4fca-ae40-3d7e55c19426
+		sourceLineageTag: speed_kmh
+		summarizeBy: none
+		sourceColumn: speed_kmh
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column power_w
+		dataType: double
+		lineageTag: 3b947353-5a55-4aee-9091-6b7fab60467f
+		sourceLineageTag: power_w
+		summarizeBy: none
+		sourceColumn: power_w
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cadence_rpm
+		dataType: double
+		lineageTag: 5b794b50-81dc-4ba1-96e3-dd7ddf38b076
+		sourceLineageTag: cadence_rpm
+		summarizeBy: none
+		sourceColumn: cadence_rpm
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column heart_rate_bpm
+		dataType: double
+		lineageTag: fe8825e3-7cbd-40c3-8a35-8c5b3cca2dac
+		sourceLineageTag: heart_rate_bpm
+		summarizeBy: none
+		sourceColumn: heart_rate_bpm
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column watts_per_kg
+		dataType: double
+		lineageTag: bf2cc3a2-e9b0-4c2f-b9fb-6bfb2598e7df
+		sourceLineageTag: watts_per_kg
+		summarizeBy: none
+		sourceColumn: watts_per_kg
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_telemetry = entity
+		mode: directLake
+		source
+			entityName: fact_telemetry
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

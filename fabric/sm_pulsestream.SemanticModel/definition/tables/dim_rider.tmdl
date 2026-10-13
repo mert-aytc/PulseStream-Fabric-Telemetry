@@ -1,0 +1,94 @@
+table dim_rider
+	lineageTag: f9a6d2c6-5482-4a04-892c-f9545740561e
+	sourceLineageTag: [dbo].[dim_rider]
+
+	column rider_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5901287f-3f57-4e2a-936f-963ab2ac93b1
+		sourceLineageTag: rider_id
+		summarizeBy: none
+		sourceColumn: rider_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column rider_name
+		dataType: string
+		lineageTag: 68c414c4-3f61-47e3-9925-4f54740e8f13
+		sourceLineageTag: rider_name
+		summarizeBy: none
+		sourceColumn: rider_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 86c9b26a-8054-4090-9bb9-0d2953ed040f
+		sourceLineageTag: team_id
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		lineageTag: 3fc57c3c-f134-4add-9c16-708f7b2fe3b6
+		sourceLineageTag: team_name
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column body_mass_kg
+		dataType: double
+		lineageTag: 065b294b-6a24-4aef-9432-c1cac2e40cf5
+		sourceLineageTag: body_mass_kg
+		summarizeBy: none
+		sourceColumn: body_mass_kg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ftp_wkg
+		dataType: double
+		lineageTag: 087332f1-d126-4706-a67b-15f6ef7f4b58
+		sourceLineageTag: ftp_wkg
+		summarizeBy: none
+		sourceColumn: ftp_wkg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_hr_bpm
+		dataType: int64
+		formatString: 0
+		lineageTag: b047e134-f65b-4fa0-85d2-82d27b19c30b
+		sourceLineageTag: max_hr_bpm
+		summarizeBy: none
+		sourceColumn: max_hr_bpm
+
+		annotation SummarizationSetBy = Automatic
+
+	column rest_hr_bpm
+		dataType: int64
+		formatString: 0
+		lineageTag: c091c596-633b-4cc1-9042-f092c48bd793
+		sourceLineageTag: rest_hr_bpm
+		summarizeBy: none
+		sourceColumn: rest_hr_bpm
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_rider = entity
+		mode: directLake
+		source
+			entityName: dim_rider
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

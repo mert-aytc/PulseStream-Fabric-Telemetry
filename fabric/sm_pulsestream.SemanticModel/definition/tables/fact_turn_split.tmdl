@@ -1,0 +1,129 @@
+table fact_turn_split
+	lineageTag: fd63f01d-949d-48af-a42c-297e2ba992e9
+	sourceLineageTag: [dbo].[fact_turn_split]
+
+	column ride_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5f2c8ab0-a002-410b-ba60-272f9c030aab
+		sourceLineageTag: ride_id
+		summarizeBy: none
+		sourceColumn: ride_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column rider_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6e12afd5-4377-4866-8470-95015f7722ec
+		sourceLineageTag: rider_id
+		summarizeBy: none
+		sourceColumn: rider_id
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column turn_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4b31068c-00fe-4954-ac33-9708174cd4d0
+		sourceLineageTag: turn_id
+		summarizeBy: none
+		sourceColumn: turn_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: a067885d-a1c3-4165-8dcc-9d6811d804e0
+		sourceLineageTag: segment_seconds
+		summarizeBy: none
+		sourceColumn: segment_seconds
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column avg_speed_kmh
+		dataType: double
+		lineageTag: 74e14730-0a3b-45ff-b255-de86eb394799
+		sourceLineageTag: avg_speed_kmh
+		summarizeBy: none
+		sourceColumn: avg_speed_kmh
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_power_w
+		dataType: double
+		lineageTag: f8403de0-fcfa-4927-b9f2-c74dde05ad56
+		sourceLineageTag: avg_power_w
+		summarizeBy: none
+		sourceColumn: avg_power_w
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_heart_rate_bpm
+		dataType: double
+		lineageTag: 019b1221-cd89-444a-ad6d-59be1ec50c72
+		sourceLineageTag: avg_heart_rate_bpm
+		summarizeBy: none
+		sourceColumn: avg_heart_rate_bpm
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_grade_pct
+		dataType: double
+		lineageTag: 0b6c540c-65cf-4d52-8f80-27b958d88a52
+		sourceLineageTag: avg_grade_pct
+		summarizeBy: none
+		sourceColumn: avg_grade_pct
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column elevation_gain_m
+		dataType: double
+		lineageTag: 610c4967-3d77-4b30-a507-3c41c6a2dc4d
+		sourceLineageTag: elevation_gain_m
+		summarizeBy: none
+		sourceColumn: elevation_gain_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_turn_split = entity
+		mode: directLake
+		source
+			entityName: fact_turn_split
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

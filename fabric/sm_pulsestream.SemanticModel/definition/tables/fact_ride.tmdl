@@ -1,0 +1,454 @@
+table fact_ride
+	lineageTag: 1c0bb6c7-1eb5-474a-924d-df85fd110562
+	sourceLineageTag: [dbo].[fact_ride]
+
+	measure Rides = COUNTROWS(fact_ride)
+		formatString: 0
+		displayFolder: Rides
+		lineageTag: 69cbbfb4-6c19-4b82-bc2c-857f9b11627b
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure Riders = DISTINCTCOUNT(fact_ride[rider_id])
+		formatString: 0
+		displayFolder: Rides
+		lineageTag: 388823c5-a07b-47a0-8838-09299fd2e6fc
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Avg Time (min)' = DIVIDE(AVERAGE(fact_ride[total_time_s]), 60)
+		formatString: 0.00
+		displayFolder: Rides
+		lineageTag: b3e7edd2-020e-439d-91a1-3cf5b4e543ff
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Best Time (min)' = DIVIDE(MIN(fact_ride[total_time_s]), 60)
+		formatString: 0.00
+		displayFolder: Rides
+		lineageTag: f49c5534-b098-47d3-8a23-d02792a7c35b
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Avg Speed (km/h)' = DIVIDE(SUM(fact_ride[distance_km]), DIVIDE(SUM(fact_ride[total_time_s]), 3600))
+		formatString: 0.00
+		displayFolder: Rides
+		lineageTag: 7afd6a45-9494-4a70-9dfe-148763c08f19
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'VAM (m/h)' = DIVIDE(SUM(fact_ride[elevation_gain_m]), DIVIDE(SUM(fact_ride[total_time_s]), 3600))
+		formatString: #,0.00
+		displayFolder: Rides
+		lineageTag: be83d2c6-07a9-4ddc-8b7b-acaa223f47df
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Climb Gain (m)' = MAX(fact_ride[elevation_gain_m])
+		formatString: #,0
+		displayFolder: Rides
+		lineageTag: e86e9bff-a959-4b50-aeee-d027b7d6052b
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Avg Power (W)' = AVERAGE(fact_telemetry[power_w])
+		formatString: 0.00
+		displayFolder: Performance
+		lineageTag: d4361c8c-7737-4867-9f85-696be81bd61a
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Max Power (W)' = MAX(fact_ride[max_power_w])
+		formatString: 0.00
+		displayFolder: Performance
+		lineageTag: 249cd036-7e70-4ae0-821b-eb4d3dd36e7b
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Avg W/kg' = AVERAGE(fact_telemetry[watts_per_kg])
+		formatString: 0.00
+		displayFolder: Performance
+		lineageTag: 5d3522a4-c5ca-4f89-a520-67df33f11e8e
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Avg Heart Rate (bpm)' = AVERAGE(fact_telemetry[heart_rate_bpm])
+		formatString: 0.00
+		displayFolder: Performance
+		lineageTag: b84bef36-e49d-499c-8e95-f93cf4300f85
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Max Heart Rate (bpm)' = MAX(fact_ride[max_heart_rate_bpm])
+		formatString: 0
+		displayFolder: Performance
+		lineageTag: d3e1223c-f572-48e4-9cbe-faae917c4232
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Avg Cadence (rpm)' = AVERAGE(fact_telemetry[cadence_rpm])
+		formatString: 0.00
+		displayFolder: Performance
+		lineageTag: f7c16de9-640e-452d-ab88-77d86e076099
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Avg Segment Time (s)' = ```
+			
+			    DIVIDE(SUM(fact_turn_split[segment_seconds]), DISTINCTCOUNT(fact_turn_split[ride_id]))
+			```
+		formatString: 0.00
+		displayFolder: Cornering Analysis
+		lineageTag: f4eb67a4-5a36-4735-8df8-8cd9a8ef43c1
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Segment Avg Speed (km/h)' = ```
+			
+			    DIVIDE(SUMX(fact_turn_split, fact_turn_split[avg_speed_kmh] * fact_turn_split[segment_seconds]),
+			           SUM(fact_turn_split[segment_seconds]))
+			```
+		formatString: 0.00
+		displayFolder: Cornering Analysis
+		lineageTag: 52b2401f-87de-4388-b755-2c4dea483ad0
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Segment Avg HR (bpm)' = ```
+			
+			    DIVIDE(SUMX(fact_turn_split, fact_turn_split[avg_heart_rate_bpm] * fact_turn_split[segment_seconds]),
+			           SUM(fact_turn_split[segment_seconds]))
+			```
+		formatString: 0.00
+		displayFolder: Cornering Analysis
+		lineageTag: c66809c4-5763-49b6-8d74-10eac7e361cd
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Rejected Rows' = CALCULATE(SUM(dq_summary[failed_rows]), dq_summary[rule] = "TOTAL_REJECTED_ROWS")
+		formatString: 0
+		displayFolder: Data Quality
+		lineageTag: 80e679a4-20a1-45d8-8270-ad843acdad6f
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Rejected %' = DIVIDE([Rejected Rows], MAX(dq_summary[total_rows]))
+		displayFolder: Data Quality
+		lineageTag: c7d16798-0939-4d82-8c5d-acf66adcbb9b
+
+		formatStringDefinition = IF([Rejected %] < 0.01, "0.00%", "0.0%")
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+		changedProperty = FormatStringDefinition
+
+	measure 'Power Fade %' =
+			
+			VAR FirstHalf  = CALCULATE([Avg Power (W)], fact_telemetry[dist_m] <= 6900)
+			VAR SecondHalf = CALCULATE([Avg Power (W)], fact_telemetry[dist_m] > 6900)
+			RETURN DIVIDE(FirstHalf - SecondHalf, FirstHalf)
+		lineageTag: 0d01cf2a-9165-4be7-98fc-9d26d277ca41
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rows Checked' = MAX(dq_summary[total_rows])
+		formatString: #,0
+		displayFolder: Data Quality
+		lineageTag: 65aeada6-2b20-4c20-b901-7497fb8069b9
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Clean Rows' = [Rows Checked] - [Rejected Rows]
+		formatString: #,0
+		displayFolder: Data Quality
+		lineageTag: 4d36d969-0e68-4b9e-882f-ae007b810cad
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		changedProperty = FormatString
+
+	measure 'Rule Status' = IF(SUM(dq_summary[failed_rows]) = 0, "PASS", "FLAGGED")
+		displayFolder: Data Quality
+		lineageTag: 7808e844-6ba4-491f-8e50-18210660034d
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+	measure 'Segment Pace (s/km)' = DIVIDE([Avg Segment Time (s)], MAX(dim_turn[section_km]))
+		displayFolder: Cornering Analysis
+		lineageTag: 1abbe104-aa6f-48fe-8f2b-8400044c92aa
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ride_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bd74c24-be40-42bc-b207-3fedf6f706a9
+		sourceLineageTag: ride_id
+		summarizeBy: none
+		sourceColumn: ride_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column rider_id
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 90a1cb2e-db11-4d70-8d3b-a8b63654c86f
+		sourceLineageTag: rider_id
+		summarizeBy: none
+		sourceColumn: rider_id
+
+		changedProperty = SummarizeBy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column total_time_s
+		dataType: int64
+		formatString: 0
+		lineageTag: 95bf142c-a289-4ea8-9e5f-95455aeff1b0
+		sourceLineageTag: total_time_s
+		summarizeBy: none
+		sourceColumn: total_time_s
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+	column distance_km
+		dataType: double
+		lineageTag: e1b9624d-6343-45d2-9eee-b42d1f38e4da
+		sourceLineageTag: distance_km
+		summarizeBy: none
+		sourceColumn: distance_km
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column elevation_gain_m
+		dataType: double
+		lineageTag: f93d530e-58bd-4f51-8670-4b71064b51bf
+		sourceLineageTag: elevation_gain_m
+		summarizeBy: none
+		sourceColumn: elevation_gain_m
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_speed_kmh
+		dataType: double
+		lineageTag: a9b99142-ef49-4262-b8c6-8fbac4d0d1bc
+		sourceLineageTag: avg_speed_kmh
+		summarizeBy: none
+		sourceColumn: avg_speed_kmh
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_power_w
+		dataType: double
+		lineageTag: 3bfc0626-f7d7-4304-86a5-134eb4226bf4
+		sourceLineageTag: avg_power_w
+		summarizeBy: none
+		sourceColumn: avg_power_w
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_power_w
+		dataType: double
+		lineageTag: a532940d-1dd8-4709-a907-f97371e6f9e0
+		sourceLineageTag: max_power_w
+		summarizeBy: none
+		sourceColumn: max_power_w
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_watts_per_kg
+		dataType: double
+		lineageTag: 2b12aac4-1d6b-4c08-bdbe-6fc1ae861904
+		sourceLineageTag: avg_watts_per_kg
+		summarizeBy: none
+		sourceColumn: avg_watts_per_kg
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_heart_rate_bpm
+		dataType: double
+		lineageTag: fc33c7f1-ad9a-421e-99ea-fc2356b74b71
+		sourceLineageTag: avg_heart_rate_bpm
+		summarizeBy: none
+		sourceColumn: avg_heart_rate_bpm
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column max_heart_rate_bpm
+		dataType: double
+		lineageTag: faa61ccd-de56-40db-8858-bf92d051455a
+		sourceLineageTag: max_heart_rate_bpm
+		summarizeBy: none
+		sourceColumn: max_heart_rate_bpm
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column effort_ratio
+		dataType: double
+		lineageTag: 625d5cc3-d768-4fbc-aa13-82496006b2f5
+		sourceLineageTag: effort_ratio
+		summarizeBy: none
+		sourceColumn: effort_ratio
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 919a6307-3991-41db-9ea7-60e2a7d2e088
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column vam_m_per_h
+		dataType: double
+		lineageTag: 45f52094-5cf0-453a-9b52-21d3e6e8881c
+		sourceLineageTag: vam_m_per_h
+		summarizeBy: none
+		sourceColumn: vam_m_per_h
+
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_ride = entity
+		mode: directLake
+		source
+			entityName: fact_ride
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

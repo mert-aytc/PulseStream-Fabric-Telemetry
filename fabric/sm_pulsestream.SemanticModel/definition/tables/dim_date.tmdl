@@ -1,0 +1,82 @@
+table dim_date
+	lineageTag: abd243f3-5d68-4101-9c15-8d685f80a60c
+	sourceLineageTag: [dbo].[dim_date]
+
+	column date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9d340c35-1769-42f8-8865-821bf5f5d4f5
+		sourceLineageTag: date_key
+		summarizeBy: none
+		sourceColumn: date_key
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 92cc9202-824a-4297-9f84-d94dab55c166
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 83a0d778-5d63-4ccf-a2ed-dfa7799bff98
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: afb02004-09a2-48ce-9e96-d1ca2061e81f
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: df9b07e2-2d85-43e8-bb5e-9b00cca36d48
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 15977081-d910-47d2-912b-4683396eb388
+		sourceLineageTag: day
+		summarizeBy: none
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday
+		dataType: string
+		lineageTag: 3c8b05bf-38eb-4252-a603-40faf98fb704
+		sourceLineageTag: weekday
+		summarizeBy: none
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_pulsestream_gold'
+

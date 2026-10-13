@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "rpt_pulsestream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0036d84a-94d6-9cc0-4811-56b78edc1419"
+  }
+}
